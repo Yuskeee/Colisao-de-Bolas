@@ -77,22 +77,22 @@ int main (int argc, char* args[]){
 		}
 		else{
 			//A semente usando o tempo para achar números aleatórios
-    		srand((unsigned)time(NULL));
+    			srand((unsigned)time(NULL));
 
-    		Bola* bolas = (Bola*) malloc (sizeof (Bola) * quantidade);
-            //Inserir quantidade como parametro em gerarBolas
-            gerarBolas(bolas, quantidade);
+    			Bola* bolas = (Bola*) malloc (sizeof (Bola) * quantidade);
+           		//Inserir quantidade como parametro em gerarBolas
+           		gerarBolas(bolas, quantidade);
 
-            //Iniar loop de eventos
-            bool sair = false;
-            SDL_Event eventos;
-            while( !sair ){
-                while( SDL_PollEvent( &eventos ) != 0 ){
-                    //Fechar a Janela
-                    if( eventos.type == SDL_QUIT ){
-                        sair = true;
-                    }
-                }
+            		//Iniar loop de eventos
+           		bool sair = false;
+            		SDL_Event eventos;
+            		while( !sair ){
+                		while( SDL_PollEvent( &eventos ) != 0 ){
+                    			//Fechar a Janela
+                    			if( eventos.type == SDL_QUIT ){
+                        			sair = true;
+                    			}
+                		}
 				//Limpa a tela
 				SDL_RenderClear(rend);
 				SDL_SetRenderDrawColor(rend, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -100,10 +100,10 @@ int main (int argc, char* args[]){
 				//Renderiza bolas
 				rendBolas(bolas, quantidade);
 
-                //Atualizar bolas por colisões
-                movimentaBolas(bolas, quantidade);
-                colisaoTela(bolas, quantidade);
-                colisaoBolas(bolas, quantidade);
+                		//Atualizar bolas por colisões
+                		movimentaBolas(bolas, quantidade);
+                		colisaoTela(bolas, quantidade);
+                		colisaoBolas(bolas, quantidade);
 
 				//Atualizar tela
 				SDL_RenderPresent(rend);
@@ -111,22 +111,21 @@ int main (int argc, char* args[]){
 				float momentop_squared = 0;
 				int massa = 1;
 
-                for(int i = 0; i < quantidade; i++)
-                    momentop_squared += massa * (pow(bolas[i].velX,2) + pow(bolas[i].velY, 2));
+                		for(int i = 0; i < quantidade; i++)
+                    			momentop_squared += massa * (pow(bolas[i].velX,2) + pow(bolas[i].velY, 2));
 
-                printf("momento p^2 = %.4f\r", momentop_squared);
+                		printf("momento p^2 = %.4f\r", momentop_squared);
 
 				//SDL_delay -> nao necessario com VSync
 				//SDL_Delay(1000/144);
-            }
-
+            		}
 		}
 	}
 	//Termina o programa e libera as memórias
-    SDL_DestroyTexture(texturaBola);
-    SDL_DestroyRenderer(rend);
-    SDL_DestroyWindow(janela);
-    IMG_Quit();
+   	SDL_DestroyTexture(texturaBola);
+    	SDL_DestroyRenderer(rend);
+    	SDL_DestroyWindow(janela);
+    	IMG_Quit();
 	SDL_Quit();
 	return 0;
 }
@@ -147,7 +146,7 @@ bool iniciar(){
 		}
 
 		//Criar Janela
-		janela = SDL_CreateWindow("COLISÃO DE BOLAS", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, TELA_LARGURA, TELA_ALTURA, SDL_WINDOW_SHOWN);
+		janela = SDL_CreateWindow("COLISAO DE BOLAS", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, TELA_LARGURA, TELA_ALTURA, SDL_WINDOW_SHOWN);
 		if(janela == NULL){
 			printf("Janela não foi criada -> SDL Error: %s\n", SDL_GetError());
 			validez = false;
