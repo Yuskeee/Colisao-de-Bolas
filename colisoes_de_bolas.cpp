@@ -1,5 +1,5 @@
 /*
-Colis„o de Bolinhas
+Colis√£o de Bolinhas
 
 RODRIGO YUSKE YAMAUCHI - UTFPR
 */
@@ -21,7 +21,7 @@ class Bola{
         //Coordenadas X e Y da bola
         float coordX, coordY;
 
-        //ProjeÁıes da velocidade da bola
+        //Proje√ß√µes da velocidade da bola
         float velX, velY;
 };
 
@@ -40,29 +40,29 @@ SDL_Rect blocoColisoes;
 bool iniciar();
 bool carregarTextura();
 
-/* ~~~~~~~~Definindo funÁıes~~~~~~~~~~ */
-//FunÁ„o para gerar bolas aleatÛrias
+/* ~~~~~~~~Definindo fun√ß√µes~~~~~~~~~~ */
+//Fun√ß√£o para gerar bolas aleat√≥rias
 void gerarBolas(Bola* bolas,int n);
 
-//FunÁ„o de colis„o contra borda da tela
+//Fun√ß√£o de colis√£o contra borda da tela
 void colisaoTela(Bola* bolas, int n);
 
-//FunÁ„o de colis„o entre bolas
+//Fun√ß√£o de colis√£o entre bolas
 void colisaoBolas(Bola* bolas, int n);
 
-//FunÁ„o para renderizar as bolas
+//Fun√ß√£o para renderizar as bolas
 void rendBolas(Bola* bolas, int n);
 
-//FunÁ„o para movimentar bolas e verificar colisıes
+//Fun√ß√£o para movimentar bolas e verificar colis√µes
 void movimentaBolas(Bola* bolas, int n);
 
-/* ~~~~~~~~FunÁ„o Main~~~~~~~~~~~~~~~~ */
-//Criando FunÁ„o main
+/* ~~~~~~~~Fun√ß√£o Main~~~~~~~~~~~~~~~~ */
+//Criando Fun√ß√£o main
 int main (int argc, char* args[]){
     //Qntd. de bolas
     int quantidade;
 
-    //Pedir ao usu·rio a quantidade de bolas
+    //Pedir ao usu√°rio a quantidade de bolas
     printf("Digite a quantidade de bolas: ");
     scanf("%d", &quantidade);
 
@@ -76,7 +76,7 @@ int main (int argc, char* args[]){
 			printf("Falha para carregar a textura.\n");
 		}
 		else{
-			//A semente usando o tempo para achar n˙meros aleatÛrios
+			//A semente usando o tempo para achar n√∫meros aleat√≥rios
     		srand((unsigned)time(NULL));
 
     		Bola* bolas = (Bola*) malloc (sizeof (Bola) * quantidade);
@@ -100,7 +100,7 @@ int main (int argc, char* args[]){
 				//Renderiza bolas
 				rendBolas(bolas, quantidade);
 
-                //Atualizar bolas por colisıes
+                //Atualizar bolas por colis√µes
                 movimentaBolas(bolas, quantidade);
                 colisaoTela(bolas, quantidade);
                 colisaoBolas(bolas, quantidade);
@@ -122,7 +122,7 @@ int main (int argc, char* args[]){
 
 		}
 	}
-	//Termina o programa e libera as memÛrias
+	//Termina o programa e libera as mem√≥rias
     SDL_DestroyTexture(texturaBola);
     SDL_DestroyRenderer(rend);
     SDL_DestroyWindow(janela);
@@ -137,26 +137,26 @@ bool iniciar(){
 
 	//Iniciar SDL
 	if(SDL_Init(SDL_INIT_VIDEO) < 0){
-		printf("SDL n„o inicializou -> SDL Error: %s\n", SDL_GetError());
+		printf("SDL n√£o inicializou -> SDL Error: %s\n", SDL_GetError());
 		validez = false;
 	}
 	else{
 		//Ativar filtro linear
 		if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")){
-			printf("Filtro Linear n„o foi ativado.");
+			printf("Filtro Linear n√£o foi ativado.");
 		}
 
 		//Criar Janela
-		janela = SDL_CreateWindow("COLIS√O DE BOLAS", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, TELA_LARGURA, TELA_ALTURA, SDL_WINDOW_SHOWN);
+		janela = SDL_CreateWindow("COLIS√ÉO DE BOLAS", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, TELA_LARGURA, TELA_ALTURA, SDL_WINDOW_SHOWN);
 		if(janela == NULL){
-			printf("Janela n„o foi criada -> SDL Error: %s\n", SDL_GetError());
+			printf("Janela n√£o foi criada -> SDL Error: %s\n", SDL_GetError());
 			validez = false;
 		}
 		else{
 			//Criar renderizador
 			rend = SDL_CreateRenderer(janela, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 			if(rend == NULL){
-				printf("Renderizador n„o foi criado -> SDL Error: %s\n", SDL_GetError());
+				printf("Renderizador n√£o foi criado -> SDL Error: %s\n", SDL_GetError());
 				validez = false;
 			}
 			else{
@@ -166,7 +166,7 @@ bool iniciar(){
 				//Permitir imagens em formato png/jpg
 				int imgFlags = IMG_INIT_PNG;
 				if(!(IMG_Init(imgFlags) & imgFlags)){
-					printf("SDL image n„o iniciou -> SDL_image Error: %s\n", IMG_GetError());
+					printf("SDL image n√£o iniciou -> SDL_image Error: %s\n", IMG_GetError());
 					validez = false;
 				}
 			}
@@ -178,7 +178,7 @@ bool iniciar(){
 
 bool carregarTextura(){
     bool validez = true;
-    imgBola = IMG_Load("sprites/bola.png");
+    imgBola = IMG_Load("bola.png");
     if (imgBola == NULL){
         printf("Falha para carregar imagem da bola!\n");
         validez = false;
@@ -191,27 +191,27 @@ bool carregarTextura(){
             validez = false;
         }
     }
-    //Limpar a superfÌcie velha
+    //Limpar a superf√≠cie velha
     SDL_FreeSurface(imgBola);
     return validez;
 }
 
 void gerarBolas(Bola* bolas,int n){
     for (int i = 0; i < n; i++){
-        //Gerar as coordenadas aleatÛrias
+        //Gerar as coordenadas aleat√≥rias
         bolas[i].coordX = rand() % (TELA_LARGURA - 50);
         bolas[i].coordY = rand() % (TELA_ALTURA - 50);
 
-        //Gerar as velocidades aleatÛrias
-        bolas[i].velX = rand() % (/*(velocidade maxima) + velocidade mÌnima*/ 2) + 1;
-        bolas[i].velY = rand() % (/*(velocidade maxima) + velocidade mÌnima*/ 2) + 1;
+        //Gerar as velocidades aleat√≥rias
+        bolas[i].velX = rand() % (/*(velocidade maxima) + velocidade m√≠nima*/ 2) + 1;
+        bolas[i].velY = rand() % (/*(velocidade maxima) + velocidade m√≠nima*/ 2) + 1;
     }
     //Evitar bolas surgirem num mesmo lugar
     for(int i = 0; i < n; i++)
         for(int i2 = i + 1; i2 < n; i2++){
             float distEntreBolas_squared = sqrt (pow ((bolas[i].coordX - bolas[i2].coordX), 2) + pow ((bolas[i].coordY - bolas[i2].coordY), 2));
             if (distEntreBolas_squared <= Bola_Raio * 2){
-                //Gerar as coordenadas aleatÛrias
+                //Gerar as coordenadas aleat√≥rias
                 bolas[i].coordX = rand() % (TELA_LARGURA - 50);
                 bolas[i].coordY = rand() % (TELA_ALTURA - 50);
                 i = 0;
@@ -245,11 +245,11 @@ void colisaoBolas(Bola* bolas, int n){
                 float dVx = bolas[i2].velX - bolas[i].velX;
                 float dVy = bolas[i2].velY - bolas[i].velY;
 
-                //Retornar velocidade se bolas n„o estiverem se aproximando para evitar que grudem e buguem
+                //Retornar velocidade se bolas n√£o estiverem se aproximando para evitar que grudem e buguem
                 if ((dVx * direcX + dVy * direcY) >= 0)
                     return;
 
-                //Tangente do ‚ngulo de colis„o
+                //Tangente do √¢ngulo de colis√£o
                 float a;
                 if (fabs(direcX) > pow(10,-15))
                     a = direcY / direcX;
@@ -259,7 +259,7 @@ void colisaoBolas(Bola* bolas, int n){
                         a *= -1;
                 }
 
-                //VariaÁ„o da velocidade no eixo X das bolas
+                //Varia√ß√£o da velocidade no eixo X das bolas
                 float varVelX = (dVx + a * dVy) / (1 + a * a);
 
                 //Atualizar velocidades
