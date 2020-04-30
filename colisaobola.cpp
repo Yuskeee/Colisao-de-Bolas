@@ -115,10 +115,9 @@ int main (int argc, char* args[]){
 
                 //SDL_delay -> nao necessario com VSync
                 //SDL_Delay(1000/144);
-	    }
             }
+		}
 	}
-	    
 	//Termina o programa e libera as memórias
 	SDL_DestroyTexture(texturaBola);
 	SDL_DestroyRenderer(rend);
