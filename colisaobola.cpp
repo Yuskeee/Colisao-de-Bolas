@@ -1,7 +1,7 @@
 /*
 Colisão de Bolinhas
 
-RODRIGO YUSKE YAMAUCHI - UTFPR
+RODRIGO YUSKE YAMAUCHI
 */
 #include <stdio.h>
 #include <SDL.h>
